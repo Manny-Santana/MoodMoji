@@ -52,9 +52,9 @@ mongoose.connection.once("open", () => {
 //              Controllers/Routes
 // =======================================
 const studentsController = require("./controllers/students.js");
-// const usersController = require("./controllers/users.js");
+const usersController = require("./controllers/users.js");
 app.use("/students", studentsController);
-// app.use("/users", usersController);
+app.use("/users", usersController);
 
 // =======================================
 //              Listen
