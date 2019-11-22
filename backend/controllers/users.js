@@ -3,7 +3,7 @@ const users = express.Router();
 const User = require('../models/users.js');
 
 //POST ROUTE
-users.post('/', async (req, res) => {
+users.post('/register', async (req, res) => {
     User.create(req.body, (error, createdUser) => {
       if (error) {
         res.status(400).json({ error: error.message })
@@ -22,6 +22,7 @@ users.get('/', (req, res) => {
     })
 })
 
+//DELETE  ROUTE
 users.delete('/:id', (req, res) => {
     User.findByIdAndRemove(req.params.id, (err, deletedUser) => {
       if (err) {
