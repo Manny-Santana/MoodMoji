@@ -1,6 +1,7 @@
 import React from "react";
 import "./App.css";
 import MainContent from "./components/MainContent";
+<<<<<<< HEAD
 import CreateForm from "./components/CreateForm";
 
 class App extends React.Component {
@@ -35,6 +36,17 @@ class App extends React.Component {
       </div>
     );
   }
+=======
+import Student from "./components/Students";
+
+function App() {
+  return (
+    <div className="App">
+      <MainContent />
+      
+    </div>
+  );
+>>>>>>> 6b6338a889022f0dffe0984783f6bfe63db8fec4
 }
 
 export default App;

@@ -9,6 +9,71 @@
   image-rendering: optimizeQuality;
 }
 
+<<<<<<< HEAD
 /* input {
   width: 200px;
 } */
+=======
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #09d3ac;
+}
+.feelings{
+  display: flex;
+  justify-content: space-around;
+}
+.main{
+  border: 2px dotted blue;
+  height: 100vh;
+  overflow-y: hidden;
+}
+
+.listContainer{
+  background: whitesmoke;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.student-item-cont{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.user-item-cont{
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+
+}
+
+.studentItem{
+  background: white;
+  height: 250px;
+  width: 250px;
+  margin: 15px;
+  border-radius: 12px;
+}
+.userItem{
+  background: white;
+  height: 250px;
+  width: 250px;
+  margin: 15px;
+  border-radius: 12px;
+}
+img{
+  height: 50px;
+  width: 60px;
+}
+>>>>>>> 6b6338a889022f0dffe0984783f6bfe63db8fec4
