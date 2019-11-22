@@ -11,7 +11,6 @@ const app = express();
 
 //PORT
 const PORT = 3003;
-<<<<<<< HEAD
 const MONGODB_URI = "mongodb://localhost:27017" + "/studentDB";
 
 //CORS
@@ -27,16 +26,6 @@ const corsOptions = {
       callback(new Error("Not allowed by CORS"));
     }
   }
-=======
-
-const MONGODB_URI = "mongodb://localhost:27017" + "/studentDB";
-
-//CORS
-
-const corsOptions = {
-  origin: "http://localhost:3000",
-  optionsSuccessStatus: 200
->>>>>>> 6b6338a889022f0dffe0984783f6bfe63db8fec4
 };
 
 // =======================================
