@@ -30,7 +30,7 @@ class CreateForm extends React.Component {
       emoji: this.state.emoji
     });
     this.setState({ emoji: "" });
-    this.props.handleAddEmoji(response.data);
+    this.props.handleAddMood(response.data);
   }
 
   render() {

@@ -1,52 +1,55 @@
 import React from "react";
 import "./App.css";
 import MainContent from "./components/MainContent";
-<<<<<<< HEAD
 import CreateForm from "./components/CreateForm";
 
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      emojis: [],
+      emoji: {}
+    };
+    // this.deleteMood = this.deleteMood.bind(this);
   }
 
-  //Function tied CreateForm to add a new Emoji
-  handleAddEmoji(emoji) {
+  //Function tied CreateForm to add a new Mood
+  handleAddMood(emoji) {
     this.setState({
       emojis: [...this.state.emojis, emoji]
     });
   }
+
+  // async deleteMood(id) {
+  //   await axios.delete(`${baseURL}/bookmarks/${id}`);
+  //   const filteredMoods = this.state.moods.filter(mood => {
+  //     return mood._id !== id;
+  //   });
+
+  //   this.setState({
+  //     moods: filteredMoods
+  //   });
+  // }
+
   render() {
     return (
       <div className="App">
-        <CreateForm handleAddEmoji={this.handleAddEmoji} />
-        {/* <ul style={{ listStyle: "none" }}>
-          {this.props.emojis.map(item => {
+        <CreateForm handleAddMood={this.handleAddMood} />
+        <ul style={{ listStyle: "none" }}>
+          {/* {this.props.moods.map(item => {
             <li>
-              id={item._id}
-              title={item.title}
-              url={item.url}
-              completed={item.completed}
-              deleteBookmark={this.props.deleteMood}
-              updateBookmark={this.props.updateBookmark}
+              Emoji: {item.emoji}
+              Date:
+              <button onClick={() => this.deleteMood(bookmark._id)}>
+                DELETE
+              </button>
             </li>;
-          })}
-        </ul> */}
+          })} */}
+        </ul>
         <MainContent />
       </div>
     );
   }
-=======
-import Student from "./components/Students";
-
-function App() {
-  return (
-    <div className="App">
-      <MainContent />
-      
-    </div>
-  );
->>>>>>> 6b6338a889022f0dffe0984783f6bfe63db8fec4
 }
 
 export default App;
