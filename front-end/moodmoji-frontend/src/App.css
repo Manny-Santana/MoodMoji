@@ -2,10 +2,18 @@
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
+.emoji {
+  margin: 2em 0;
+  border-radius: 150px;
+  border: none;
+  image-rendering: optimizeQuality;
 }
 
+<<<<<<< HEAD
+/* input {
+  width: 200px;
+} */
+=======
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
@@ -68,3 +76,4 @@ img{
   height: 50px;
   width: 60px;
 }
+>>>>>>> 6b6338a889022f0dffe0984783f6bfe63db8fec4
