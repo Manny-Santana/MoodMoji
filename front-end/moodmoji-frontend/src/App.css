@@ -20,8 +20,51 @@
 .App-link {
   color: #09d3ac;
 }
-
+.feelings{
+  display: flex;
+  justify-content: space-around;
+}
 .main{
   border: 2px dotted blue;
   height: 100vh;
+  overflow-y: hidden;
+}
+
+.listContainer{
+  background: whitesmoke;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.student-item-cont{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.user-item-cont{
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+
+}
+
+.studentItem{
+  background: white;
+  height: 250px;
+  width: 250px;
+  margin: 15px;
+  border-radius: 12px;
+}
+.userItem{
+  background: white;
+  height: 250px;
+  width: 250px;
+  margin: 15px;
+  border-radius: 12px;
+}
+img{
+  height: 50px;
+  width: 60px;
 }
