@@ -11,6 +11,23 @@ const app = express();
 
 //PORT
 const PORT = 3003;
+<<<<<<< HEAD
+const MONGODB_URI = "mongodb://localhost:27017" + "/studentDB";
+
+//CORS
+const whitelist = [
+  "http://localhost:3000",
+  "https://fathomless-sierra-68956.herokuapp.com"
+];
+const corsOptions = {
+  origin(origin, callback) {
+    if (whitelist.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  }
+=======
 
 const MONGODB_URI = "mongodb://localhost:27017" + "/studentDB";
 
@@ -19,6 +36,7 @@ const MONGODB_URI = "mongodb://localhost:27017" + "/studentDB";
 const corsOptions = {
   origin: "http://localhost:3000",
   optionsSuccessStatus: 200
+>>>>>>> 6b6338a889022f0dffe0984783f6bfe63db8fec4
 };
 
 // =======================================
