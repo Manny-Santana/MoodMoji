@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+
 const studentSchema = mongoose.Schema({
     studentName: { type: String, required: true },
     text: String,

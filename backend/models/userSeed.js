@@ -3,18 +3,22 @@ const usersModel = require("./users");
 
 const seedUsersInfo = [
     {
+        parentName: "Pam",
         email: "pam@gmail.com",
         password: "pam"
     },
-    {
+    {    
+        parentName: "Perrin",
         email: "perrin@gmail.com",
         password: "perrin"
     },
     {
+      parentName: "Manny",
         email: "manny@gmail.com",
         password: "manny"
     },
     {
+        parentName: "Pratz",
         email: "pratz@gmail.com",
         password: "pratz"
     }
