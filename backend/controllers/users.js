@@ -22,6 +22,35 @@ users.get('/', (req, res) => {
     })
 })
 
+//CREATE(POST)
+users.post("/check", (req, res) => {
+    User.findOne({ email: req.body.email }, (err, foundUser) => {
+        if (error) {
+            res.status(400).json({ error: error.message })
+          }
+        if (foundUser && foundUser._id){
+          if(req.body.password === foundUser.password) {
+            console.log(req.body.email);
+            res.status(200).send(foundUsers);
+        } else {
+            res.status(200).json("");
+        }
+      }
+      else {
+        res.status(200).json(-1);
+      }
+      
+    });
+
+  });
+
+//DELETE ROUTE FOR LOGOUT
+// users.delete('/logout', (req, res) => {
+// 	req.session.destroy(() => {
+// 		res.redirect('/');
+// 	});
+// });
+
 //DELETE  ROUTE
 users.delete('/:id', (req, res) => {
     User.findByIdAndRemove(req.params.id, (err, deletedUser) => {
@@ -32,6 +61,7 @@ users.delete('/:id', (req, res) => {
     })
   })
   
+
   //EDIT ROUTE
   users.put('/:id', (req, res) => {
     User.findByIdAndUpdate(req.params.id, req.body, { new: true }, (err, updatedUser) => {
