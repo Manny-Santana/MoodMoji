@@ -12,33 +12,29 @@ const app = express();
 //PORT
 const PORT = 3003;
 
-const MONGODB_URI = 'mongodb://localhost:27017'+ '/studentDB';
+const MONGODB_URI = "mongodb://localhost:27017" + "/studentDB";
 
 //CORS
-const whitelist = ['http://localhost:3000', 'https://fathomless-sierra-68956.herokuapp.com']
+
 const corsOptions = {
-  origin (origin, callback) {
-    if (whitelist.indexOf(origin) !== -1) {
-      callback(null, true)
-    } else {
-      callback(new Error('Not allowed by CORS'))
-    }
-  }
-}
+  origin: "http://localhost:3000",
+  optionsSuccessStatus: 200
+};
 
 // =======================================
 //              MIDDLEWARE
 // =======================================
 app.use(express.json());
-// app.use(cors(corsOptions));
+app.use(cors(corsOptions));
 
 // Error / Disconnection
-mongoose.connection.on('error', err => console.log(err.message + ' is Mongod not running?'))
-mongoose.connection.on('disconnected', () => console.log('mongo disconnected'))
+mongoose.connection.on("error", err =>
+  console.log(err.message + " is Mongod not running?")
+);
+mongoose.connection.on("disconnected", () => console.log("mongo disconnected"));
 
 // Fix depreciation warnings
 mongoose.set("useFindAndModify", false);
-
 
 // =======================================
 //              Database connection
@@ -60,5 +56,5 @@ app.use("/users", usersController);
 //              Listen
 // =======================================
 app.listen(PORT, () => {
-    console.log("listening on  PORT 3000!");
-  })
+  console.log("listening on  PORT 3000!");
+});
