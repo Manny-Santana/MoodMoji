@@ -28,28 +28,23 @@ users.post("/check", (req, res) => {
         if (error) {
             res.status(400).json({ error: error.message })
           }
-        if (foundUser && foundUser._id){
+        if(foundUser && foundUser._id){
           if(req.body.password === foundUser.password) {
             console.log(req.body.email);
             res.status(200).send(foundUsers);
         } else {
-            res.status(200).json("");
+            res.status(200).json("wrong password");
         }
       }
       else {
-        res.status(200).json(-1);
+        res.status(200).json("Invalid UserName ");
       }
       
     });
 
   });
 
-//DELETE ROUTE FOR LOGOUT
-// users.delete('/logout', (req, res) => {
-// 	req.session.destroy(() => {
-// 		res.redirect('/');
-// 	});
-// });
+
 
 //DELETE  ROUTE
 users.delete('/:id', (req, res) => {
