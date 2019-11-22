@@ -23,4 +23,24 @@ students.get('/', (req, res) => {
     })
 })
 
+//DELETE ROUTE
+students.delete('/:id', (req, res) => {
+  Student.findByIdAndRemove(req.params.id, (err, deletedStudent) => {
+    if (err) {
+      res.status(400).json({ error: err.message });
+    }
+    res.status(200).json(deletedStudent);
+  })
+})
+
+//EDIT ROUTE
+students.put('/:id', (req, res) => {
+  Student.findByIdAndUpdate(req.params.id, req.body, { new: true }, (err, updatedStudent) => {
+    if (err) {
+      res.status(400).json({ error: err.message });
+    }
+    res.status(200).json(updatedStudent);
+  })
+})
+
 module.exports = students;
