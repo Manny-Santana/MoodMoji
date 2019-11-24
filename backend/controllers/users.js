@@ -1,15 +1,24 @@
 const express = require('express');
+const bcrypt = require('bcrypt');
 const users = express.Router();
+
 const User = require('../models/users.js');
 
-//POST ROUTE
-users.post('/register', async (req, res) => {
-    User.create(req.body, (error, createdUser) => {
-      if (error) {
-        res.status(400).json({ error: error.message })
-      }
-      res.status(200).send(createdUser) 
-    })
+//POST ROUTE  
+users.post('/register', async (req, res) => {   
+    req.body.password = bcrypt.hashSync(
+        req.body.password,
+        bcrypt.genSaltSync(10)
+    );
+    User.create(req.body, (err, createdUser) => {
+        if (err) {
+            // res.status(400).json({ err: err.message })
+            res.status(200).json("Email address has already been used by another account");
+        }else   {
+            res.status(200).send(createdUser);
+        }     
+    });
+
   })
 
 //INDEX ROUTE
@@ -22,14 +31,15 @@ users.get('/', (req, res) => {
     })
 })
 
-//CREATE(POST)
-users.post("/check", (req, res) => {
+//POST ROUTE for LOGIN
+users.post('/login', (req, res) => {
+    console.log('req.body');
     User.findOne({ email: req.body.email }, (err, foundUser) => {
         if (error) {
             res.status(400).json({ error: error.message })
           }
         if(foundUser && foundUser._id){
-          if(req.body.password === foundUser.password) {
+            if (bcrypt.compareSync(req.body.password, foundUser.password)) {
             console.log(req.body.email);
             res.status(200).send(foundUsers);
         } else {
@@ -37,14 +47,12 @@ users.post("/check", (req, res) => {
         }
       }
       else {
-        res.status(200).json("Invalid UserName ");
+        res.status(200).json("invalid username");
       }
       
     });
 
   });
-
-
 
 //DELETE  ROUTE
 users.delete('/:id', (req, res) => {

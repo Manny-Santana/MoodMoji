@@ -11,12 +11,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-<<<<<<< HEAD
-=======
+    "bcrypt": "^3.0.7",
     "cors": "^2.8.5",
->>>>>>> 6b6338a889022f0dffe0984783f6bfe63db8fec4
     "express": "^4.17.1",
-    "cors": "^2.8.5",
     "mongoose": "^5.7.12"
   }
 }
