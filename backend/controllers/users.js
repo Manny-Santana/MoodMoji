@@ -13,7 +13,7 @@ users.post('/register', async (req, res) => {
     User.create(req.body, (err, createdUser) => {
         if (err) {
             // res.status(400).json({ err: err.message })
-            res.status(200).json("Email address has already been used by another account");
+            res.status(200).json("email address has already been used by another account");
         }else   {
             res.status(200).send(createdUser);
         }     
@@ -39,14 +39,16 @@ users.post('/login', (req, res) => {
             res.status(400).json({ error: error.message })
           }
         if(foundUser && foundUser._id){
-            if (bcrypt.compareSync(req.body.password, foundUser.password)) {
+            //Check password match only for bcrypted passwords
+            // if (bcrypt.compareSync(req.body.password, foundUser.password)) {
+            //Check password match for both bcrypt and non brcypted passwords
+            if(req.body.password === foundUser.password) {
             console.log(req.body.email);
             res.status(200).send(foundUsers);
-        } else {
+        }else {
             res.status(200).json("wrong password");
         }
-      }
-      else {
+      }else {
         res.status(200).json("invalid username");
       }
       
