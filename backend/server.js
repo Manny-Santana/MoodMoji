@@ -4,6 +4,7 @@
 const cors = require("cors");
 const express = require("express");
 const mongoose = require("mongoose");
+require("dotenv").config();
 const bcrypt = require('bcrypt');
 
 // Dependency configurations
@@ -13,7 +14,7 @@ const app = express();
 //PORT
 const PORT = 3003;
 
-const MONGODB_URI = "mongodb://localhost:27017" + "/studentDB";
+const MONGODB_URI = process.env.mongo_URI;
 
 //CORS
 
