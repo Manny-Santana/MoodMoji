@@ -4,6 +4,7 @@
 const cors = require("cors");
 const express = require("express");
 const mongoose = require("mongoose");
+const bcrypt = require('bcrypt');
 
 // Dependency configurations
 // require('dotenv').config()
@@ -11,21 +12,15 @@ const app = express();
 
 //PORT
 const PORT = 3003;
+
 const MONGODB_URI = "mongodb://localhost:27017" + "/studentDB";
 
 //CORS
-const whitelist = [
-  "http://localhost:3000",
-  "https://fathomless-sierra-68956.herokuapp.com"
-];
+
 const corsOptions = {
-  origin(origin, callback) {
-    if (whitelist.indexOf(origin) !== -1) {
-      callback(null, true);
-    } else {
-      callback(new Error("Not allowed by CORS"));
-    }
-  }
+  origin: "http://localhost:3000",
+  optionsSuccessStatus: 200
+
 };
 
 // =======================================
