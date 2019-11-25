@@ -18,42 +18,42 @@ class App extends React.Component {
     this.state = {
       students: [
         {
-          id: 1,
-          studentName: "Ted",
+          _id: 1,
+          childname: "Ted",
           text: "sleepy",
-          mood: ":worried:",
+          emoji: ":worried:",
           parentName: "Susan",
           teacherId: "Elaine"
         },
         {
-          id: 2,
-          studentName: "Bobby",
+          _id: 2,
+          childname: "Bobby",
           text: "Did not eat breakfast",
-          mood: ":confused:",
+          emoji: ":confused:",
           parentName: "John",
           teacherId: "Elaine"
         },
         {
-          id: 3,
-          studentName: "Albert",
+          _id: 3,
+          childname: "Albert",
           text: "ready for school",
-          mood: ":expressionless:",
+          emoji: ":expressionless:",
           parentName: "June",
           teacherId: "Elaine"
         },
         {
-          id: 4,
-          studentName: "John",
+          _id: 4,
+          childname: "John",
           text: "happy",
-          mood: ":grinning:",
+          emoji: ":grinning:",
           parentName: "Sandy",
           teacherId: "Elaine"
         },
         {
-          id: 5,
-          studentName: "Joan",
+          _id: 5,
+          childname: "Joan",
           text: "looking forward to the halloween party",
-          mood: ":smile:",
+          emoji: ":smile:",
           parentName: "Henry",
           teacherId: "Elaine"
         }
@@ -78,45 +78,52 @@ class App extends React.Component {
   }
 
   async getStudents() {
-    const response = await axios(`${baseURL}`);
-    this.setState([...this.state.students, response.data]);
+    const response = await axios(`${baseURL}/students`);
+    console.log(response.data);
+    // this.setState({
+    //   students: response
+    // });
+    this.setState({
+      students: [...response.data, this.state.students]
+    });
+    console.log(this.state.students);
   }
 
-  setMood = event => {
-    const { student, id } = event.target;
-    console.log(id);
-
-    this.setState({
-      [student]: id
-    });
-  };
-
-  // async removeStudent(id) {
-  //   await axios.delete(`${baseURL}/students/${id}`);
-  //   const filteredFoundStudents = this.state.foundStudents.filter(student => {
-  //     return student._id !== id;
-  //   });
+  // setMood = event => {
+  //   const { student, id } = event.target;
+  //   console.log(id);
 
   //   this.setState({
-  //     students: filteredFoundStudents
+  //     [student]: id
   //   });
-  // }
+  // };
 
-  removeStudent = index => {
-    const { students } = this.state;
+  async removeStudent(id) {
+    await axios.delete(`${baseURL}/students/${id}`);
+    const filteredFoundStudents = this.state.students.filter(student => {
+      return student._id !== id;
+    });
 
     this.setState({
-      students: students.filter((student, i) => {
-        return i !== index;
-      })
+      students: filteredFoundStudents
     });
-  };
+  }
+
+  // removeStudent = index => {
+  //   const { students } = this.state;
+
+  //   this.setState({
+  //     students: students.filter((student, i) => {
+  //       return i !== index;
+  //     })
+  //   });
+  // };
 
   render() {
     return (
       <div className="App">
         <h1>How is your child feeling today?</h1>
-        <CreateForm addStudent={this.addStudent} />
+        <CreateForm getStudents={this.getStudents} />
         {/* <ul>
           {this.state.students.map(item => {
             return (
@@ -132,7 +139,6 @@ class App extends React.Component {
         <Table
           studentData={this.state.students}
           removeStudent={this.removeStudent}
-          setMood={this.state.setMood}
         />
       </div>
     );
