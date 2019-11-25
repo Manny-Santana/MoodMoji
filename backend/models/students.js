@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const studentSchema = mongoose.Schema(
   {
-    studentName: { type: String, required: true },
+    childname: { type: String, required: true },
     text: String,
     emoji: String,
     parentName: String,

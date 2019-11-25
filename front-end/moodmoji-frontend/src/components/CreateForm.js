@@ -30,21 +30,78 @@ class CreateForm extends Component {
     });
   };
 
-  // async handleSubmit(event) {
-  //   event.preventDefault();
-  //   const response = await axios.post(`${baseURL}`, {
-  //     student: this.state.student
-  //   });
-  //   this.setState({ student: "" });
-  //   this.props.handleAddStudent(response.data);
-  // }
+  setSmileMood = event => {
+    event.preventDefault();
+    const { name, value } = event.target;
 
-  handleSubmit = student => {
-    this.setState({ students: [...this.state.students, student] });
+    this.setState({
+      emoji: ":smile:"
+    });
   };
 
+  setGrinningMood = event => {
+    event.preventDefault();
+    const { name, value } = event.target;
+
+    this.setState({
+      emoji: ":grinning:"
+    });
+  };
+
+  setExpressionlessMood = event => {
+    event.preventDefault();
+    const { name, value } = event.target;
+
+    this.setState({
+      emoji: ":expressionless:"
+    });
+  };
+
+  setConfusedMood = event => {
+    event.preventDefault();
+    console.log(event);
+    const { name, value } = event.target;
+
+    this.setState({
+      emoji: ":confused:"
+    });
+  };
+
+  setWorriedMood = event => {
+    event.preventDefault();
+    console.log(event);
+    const { name, value } = event.target;
+
+    this.setState({
+      emoji: ":worried:"
+    });
+  };
+
+  async handleSubmit(event) {
+    event.preventDefault();
+
+    const response = await axios.post(`${baseURL}/students`, {
+      childname: this.state.childname,
+      text: this.state.text,
+      emoji: this.state.emoji,
+      parentName: this.state.parentName,
+      teacherId: this.state.teacherId
+    });
+    // console.log(response.data.emoji);
+    this.setState({ childname: "" });
+    this.props.getStudents(response.data);
+  }
+
+  // componentDidMount() {
+  //   this.getStudents();
+  // }
+
+  // handleSubmit = student => {
+  //   this.setState({ students: [...this.state.students, student] });
+  // };
+
   render() {
-    const { studentName, parentName, text, mood } = this.state;
+    const { childname, parentName, text, mood } = this.state;
     return (
       <div>
         {/* <h1>
@@ -55,8 +112,8 @@ class CreateForm extends Component {
           <label>Student Name</label>
           <input
             type="text"
-            name="studentName"
-            value={studentName}
+            name="childname"
+            value={childname}
             onChange={this.handleChange}
           />
           <label>Parent Name</label>
@@ -67,24 +124,61 @@ class CreateForm extends Component {
             onChange={this.handleChange}
           />
 
-          <button onClick={this.setMood} value=":smile:" className="emoji">
-            <img src="https://a.slack-edge.com/production-standard-emoji-assets/10.2/apple-medium/1f604@2x.png"></img>
-          </button>
-          <button onClick={this.setMood} value=":grinning:" className="emoji">
-            <img src="https://a.slack-edge.com/production-standard-emoji-assets/10.2/apple-medium/1f60a@2x.png"></img>
+          <button
+            onClick={this.setSmileMood}
+            name="mood"
+            value=":smile:"
+            className="emoji"
+          >
+            <img
+              // value=":smile:"
+              src="https://a.slack-edge.com/production-standard-emoji-assets/10.2/apple-medium/1f604@2x.png"
+            ></img>
           </button>
           <button
-            onClick={this.setMood}
+            onClick={this.setGrinningMood}
+            // onClick()=>{this.setMood}
+            name="mood"
+            value=":grinning:"
+            className="emoji"
+          >
+            <img
+              // value=":smile:"
+              src="https://a.slack-edge.com/production-standard-emoji-assets/10.2/apple-medium/1f60a@2x.png"
+            ></img>
+          </button>
+          <button
+            onClick={this.setExpressionlessMood}
+            name="mood"
             value=":expressionless:"
             className="emoji"
           >
-            <img src="https://a.slack-edge.com/production-standard-emoji-assets/10.2/apple-medium/1f610@2x.png"></img>
+            <img
+              // value=":smile:"
+              src="https://a.slack-edge.com/production-standard-emoji-assets/10.2/apple-medium/1f610@2x.png"
+            ></img>
           </button>
-          <button onClick={this.setMood} value=":confused:" className="emoji">
-            <img src="https://a.slack-edge.com/production-standard-emoji-assets/10.2/apple-medium/1f61f@2x.png"></img>
+          <button
+            onClick={this.setConfusedMood}
+            name="mood"
+            value=":confused:"
+            className="emoji"
+          >
+            <img
+              // value=":smile:"
+              src="https://a.slack-edge.com/production-standard-emoji-assets/10.2/apple-medium/1f61f@2x.png"
+            ></img>
           </button>
-          <button onClick={this.setMood} value=":worried:" className="emoji">
-            <img src="https://a.slack-edge.com/production-standard-emoji-assets/10.2/apple-medium/1f629@2x.png"></img>
+          <button
+            onClick={this.setWorriedMood}
+            name="mood"
+            nvalue=":worried:"
+            className="emoji"
+          >
+            <img
+              // value=":smile:"
+              src="https://a.slack-edge.com/production-standard-emoji-assets/10.2/apple-medium/1f629@2x.png"
+            ></img>
           </button>
           <label>Care to explain why?</label>
           <input
@@ -97,8 +191,7 @@ class CreateForm extends Component {
             type="button"
             value="submit"
             onClick={event => {
-              event.preventDefault();
-              this.props.handleSubmit(this.state.student);
+              this.handleSubmit(event);
               this.setState(this.initialState);
             }}
           />
