@@ -20,6 +20,7 @@ const MONGODB_URI = "mongodb://localhost:27017" + "/studentDB";
 const corsOptions = {
   origin: "http://localhost:3000",
   optionsSuccessStatus: 200
+
 };
 
 // =======================================
