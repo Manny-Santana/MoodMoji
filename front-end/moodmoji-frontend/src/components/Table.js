@@ -16,20 +16,21 @@ const TableHeader = () => {
 };
 
 const TableBody = props => {
-  const rows = props.studentData.map((row, index) => {
+  //   console.log("props...." + props.studentData.childname);
+  const rows = props.studentData.map(row => {
     return (
-      <tr key={index}>
-        <td>{row.studentName}</td>
+      <tr key={row._id}>
+        <td>{row.childname}</td>
         <td>{row.parentName}</td>
         <td>
-          <Emoji text={`${row.mood}`} />
+          <Emoji text={`${row.emoji}`} />
         </td>
         <td>{row.text}</td>
         <td>
-          <button onClick={() => props.updateStudent(index)}>Edit</button>
+          <button onClick={() => props.updateStudent(row._id)}>Edit</button>
         </td>
         <td>
-          <button onClick={() => props.removeStudent(index)}>Delete</button>
+          <button onClick={() => props.removeStudent(row._id)}>Delete</button>
         </td>
       </tr>
     );
