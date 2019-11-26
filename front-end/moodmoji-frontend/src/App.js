@@ -156,7 +156,7 @@ class App extends React.Component {
           /> */}
        
        </div>
-      </Router>
+      
       <div className="App">
         <h1>How is your child feeling today?</h1>
         <CreateForm getStudents={this.getStudents} />
@@ -177,6 +177,7 @@ class App extends React.Component {
           removeStudent={this.removeStudent}
         />
       </div>
+      </Router>
     );
   }
 }
