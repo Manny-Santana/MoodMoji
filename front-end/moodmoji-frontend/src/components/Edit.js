@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import axios from "axios";
 
+import Emoji from "react-emoji-render";
+
 let baseURL = process.env.REACT_APP_BASEURL;
 
 if (process.env.NODE_ENV === "development") {
@@ -14,7 +16,7 @@ class Edit extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentStudent: {...this.props.target}
+      ...this.props.target
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -24,22 +26,21 @@ class Edit extends Component {
   //   this.setState({ [event.currentTarget.id]: event.currentTarget.value });
   // }
 
-  //FIXME: needs to update single values on the object without deleting the whole object. 
+  //FIXME: needs to update single values on the object without deleting the whole object.
   handleChange = event => {
     const { name, value } = event.target;
 
-    this.setState((prevState)=>{
-      this.state.currentStudent: { prevState.currentStudent, currentStudent: {[name]: value }} 
-
-  })
-}
+    this.setState({
+      [name]: value
+    });
+  };
 
   setSmileMood = event => {
     event.preventDefault();
     const { name, value } = event.target;
 
     this.setState({
-      currentStudent: { emoji: ":smile:" }
+      emoji: ":smile:"
     });
   };
 
@@ -48,7 +49,7 @@ class Edit extends Component {
     const { name, value } = event.target;
 
     this.setState({
-      currentStudent: { emoji: ":smile:" }
+      emoji: ":grinning:"
     });
   };
 
@@ -57,7 +58,7 @@ class Edit extends Component {
     const { name, value } = event.target;
 
     this.setState({
-      currentStudent: { emoji: ":smile:" }
+      emoji: ":expressionless:"
     });
   };
 
@@ -67,7 +68,7 @@ class Edit extends Component {
     const { name, value } = event.target;
 
     this.setState({
-      currentStudent: { emoji: ":smile:" }
+      emoji: ":confused:"
     });
   };
 
@@ -77,13 +78,13 @@ class Edit extends Component {
     const { name, value } = event.target;
 
     this.setState({
-      currentStudent: { emoji: ":smile:" }
+      emoji: ":worried:"
     });
   };
 
   async handleSubmit(event) {
     event.preventDefault();
-    console.log(this.state.currentStudent);
+    console.log(this.state);
 
     // await axios.put(`${baseURL}/students/${}`, {
     //   childname: this.state.newStudent.childname,
@@ -106,9 +107,10 @@ class Edit extends Component {
   // };
 
   render() {
-    const { childname, parentName, text, mood } = this.state.currentStudent;
+    const { childname, parentName, text, emoji } = this.state;
+    console.log(emoji);
     return (
-      <div>
+      <div className="edit">
         {/* <h1>
           Hello, {this.state.parentName}! How is {this.state.studentName} doing
           today?
@@ -120,19 +122,21 @@ class Edit extends Component {
             name="childname"
             value={childname}
             onChange={this.handleChange}
-            placeholder={this.state.currentStudent.childname}
+            placeholder={this.state.childname}
           />
           <label>Parent Name</label>
           <input
             type="text"
             name="parentName"
             value={parentName}
-            placeholder={this.state.currentStudent.parentName}
+            placeholder={this.state.parentName}
             onChange={this.handleChange}
           />
           <div>
             <p>Current Mood: </p>
-            <button className="emoji" value={this.state.currentStudent.emoji} />
+            <button className="emoji" value={emoji}>
+              <Emoji text={`${emoji}`} />
+            </button>
           </div>
 
           <button
@@ -182,7 +186,7 @@ class Edit extends Component {
             name="text"
             value={text}
             onChange={this.handleChange}
-            placeholder={this.state.currentStudent.text}
+            placeholder={this.state.text}
           />
           <input
             type="button"
@@ -190,7 +194,7 @@ class Edit extends Component {
             onClick={() => {
               this.props.updateStudentFunction(
                 this.props.target._id,
-                this.state.currentStudent
+                this.state
               );
             }}
           />

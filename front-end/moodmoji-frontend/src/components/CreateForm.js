@@ -89,6 +89,7 @@ class CreateForm extends Component {
     });
     // console.log(response.data.emoji);
     this.setState({ childname: "" });
+    
   }
 
   // componentDidMount() {
@@ -129,8 +130,10 @@ class CreateForm extends Component {
             value=":smile:"
             className="emoji"
           >
-            <img // value=":smile:"
-            src="https://a.slack-edge.com/production-standard-emoji-assets/10.2/apple-medium/1f604@2x.png" />
+            <img
+              // value=":smile:"
+              src="https://a.slack-edge.com/production-standard-emoji-assets/10.2/apple-medium/1f604@2x.png"
+            ></img>
           </button>
           <button
             onClick={this.setGrinningMood}
@@ -139,8 +142,10 @@ class CreateForm extends Component {
             value=":grinning:"
             className="emoji"
           >
-            <img // value=":smile:"
-            src="https://a.slack-edge.com/production-standard-emoji-assets/10.2/apple-medium/1f60a@2x.png" />
+            <img
+              // value=":smile:"
+              src="https://a.slack-edge.com/production-standard-emoji-assets/10.2/apple-medium/1f60a@2x.png"
+            ></img>
           </button>
           <button
             onClick={this.setExpressionlessMood}
@@ -148,8 +153,10 @@ class CreateForm extends Component {
             value=":expressionless:"
             className="emoji"
           >
-            <img // value=":smile:"
-            src="https://a.slack-edge.com/production-standard-emoji-assets/10.2/apple-medium/1f610@2x.png" />
+            <img
+              // value=":smile:"
+              src="https://a.slack-edge.com/production-standard-emoji-assets/10.2/apple-medium/1f610@2x.png"
+            ></img>
           </button>
           <button
             onClick={this.setConfusedMood}
@@ -157,8 +164,10 @@ class CreateForm extends Component {
             value=":confused:"
             className="emoji"
           >
-            <img // value=":smile:"
-            src="https://a.slack-edge.com/production-standard-emoji-assets/10.2/apple-medium/1f61f@2x.png" />
+            <img
+              // value=":smile:"
+              src="https://a.slack-edge.com/production-standard-emoji-assets/10.2/apple-medium/1f61f@2x.png"
+            ></img>
           </button>
           <button
             onClick={this.setWorriedMood}
@@ -166,8 +175,10 @@ class CreateForm extends Component {
             nvalue=":worried:"
             className="emoji"
           >
-            <img // value=":smile:"
-            src="https://a.slack-edge.com/production-standard-emoji-assets/10.2/apple-medium/1f629@2x.png" />
+            <img
+              // value=":smile:"
+              src="https://a.slack-edge.com/production-standard-emoji-assets/10.2/apple-medium/1f629@2x.png"
+            ></img>
           </button>
           <label>Care to explain why?</label>
           <input

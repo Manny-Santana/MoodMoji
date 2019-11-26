@@ -90,9 +90,6 @@ class App extends React.Component {
     this.setState({
       students: [...response.data]
     });
-    console.log(this.state.students);
-    console.log("response", response.data);
-    alert("getstudents activated...");
   }
 
   // setMood = event => {

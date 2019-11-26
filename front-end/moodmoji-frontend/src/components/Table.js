@@ -18,7 +18,6 @@ const TableHeader = () => {
 
 const TableBody = props => {
   //   console.log("props...." + props.studentData.childname);
-  console.log(props);
 
   const rows = props.studentData.map(row => {
     return (
