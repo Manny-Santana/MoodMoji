@@ -12,8 +12,9 @@ users.post('/register', async (req, res) => {
     );
     User.create(req.body, (err, createdUser) => {
         if (err) {
+          console.log(req.body);
             // res.status(400).json({ err: err.message })
-            res.status(200).json("email address has already been used by another account");
+            res.status(200).json("email address already exists");
         }else   {
             res.status(200).send(createdUser);
         }     
@@ -33,22 +34,25 @@ users.get('/', (req, res) => {
 
 //POST ROUTE for LOGIN
 users.post('/login', (req, res) => {
-    console.log('req.body');
+    console.log(req.body);
     User.findOne({ email: req.body.email }, (err, foundUser) => {
-        if (error) {
+        if (err) {
             res.status(400).json({ error: error.message })
           }
-        if(foundUser && foundUser._id){
+        if(foundUser && foundUser._id)
+        {   
+            console.log("found user.."+ foundUser);
             //Check password match only for bcrypted passwords
             // if (bcrypt.compareSync(req.body.password, foundUser.password)) {
             //Check password match for both bcrypt and non brcypted passwords
             if(req.body.password === foundUser.password) {
             console.log(req.body.email);
-            res.status(200).send(foundUsers);
+            res.status(200).send(foundUser);
+            }else {
+                res.status(200).json("wrong password");
+            }
         }else {
-            res.status(200).json("wrong password");
-        }
-      }else {
+          console.log("in else no user.."+foundUser);
         res.status(200).json("invalid username");
       }
       
