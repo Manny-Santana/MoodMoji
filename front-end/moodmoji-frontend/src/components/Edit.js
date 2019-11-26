@@ -10,10 +10,12 @@ if (process.env.NODE_ENV === "development") {
     "mongodb+srv://MoodMoji:Dino3000@moodmoji-wnira.mongodb.net/test?retryWrites=true&w=majority";
 }
 
-class CreateForm extends Component {
+class Edit extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      currentStudent: {...this.props.target}
+    };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -22,20 +24,22 @@ class CreateForm extends Component {
   //   this.setState({ [event.currentTarget.id]: event.currentTarget.value });
   // }
 
+  //FIXME: needs to update single values on the object without deleting the whole object. 
   handleChange = event => {
     const { name, value } = event.target;
 
-    this.setState({
-      [name]: value
-    });
-  };
+    this.setState((prevState)=>{
+      this.state.currentStudent: { prevState.currentStudent, currentStudent: {[name]: value }} 
+
+  })
+}
 
   setSmileMood = event => {
     event.preventDefault();
     const { name, value } = event.target;
 
     this.setState({
-      emoji: ":smile:"
+      currentStudent: { emoji: ":smile:" }
     });
   };
 
@@ -44,7 +48,7 @@ class CreateForm extends Component {
     const { name, value } = event.target;
 
     this.setState({
-      emoji: ":grinning:"
+      currentStudent: { emoji: ":smile:" }
     });
   };
 
@@ -53,7 +57,7 @@ class CreateForm extends Component {
     const { name, value } = event.target;
 
     this.setState({
-      emoji: ":expressionless:"
+      currentStudent: { emoji: ":smile:" }
     });
   };
 
@@ -63,7 +67,7 @@ class CreateForm extends Component {
     const { name, value } = event.target;
 
     this.setState({
-      emoji: ":confused:"
+      currentStudent: { emoji: ":smile:" }
     });
   };
 
@@ -73,22 +77,24 @@ class CreateForm extends Component {
     const { name, value } = event.target;
 
     this.setState({
-      emoji: ":worried:"
+      currentStudent: { emoji: ":smile:" }
     });
   };
 
   async handleSubmit(event) {
     event.preventDefault();
+    console.log(this.state.currentStudent);
 
-    const response = await axios.post(`${baseURL}/students`, {
-      childname: this.state.childname,
-      text: this.state.text,
-      emoji: this.state.emoji,
-      parentName: this.state.parentName,
-      teacherId: this.state.teacherId
-    });
-    // console.log(response.data.emoji);
-    this.setState({ childname: "" });
+    // await axios.put(`${baseURL}/students/${}`, {
+    //   childname: this.state.newStudent.childname,
+    //   text: this.state.newStudent.text,
+    //   emoji: this.state.newStudent.emoji,
+    //   parentName: this.state.newStudent.parentName,
+    //   teacherId: this.state.newStudent.teacherId
+    // });
+    // // console.log(response.data.emoji);
+    // this.setState({ newStudent: {} });
+    // this.props.getStudents();
   }
 
   // componentDidMount() {
@@ -100,7 +106,7 @@ class CreateForm extends Component {
   // };
 
   render() {
-    const { childname, parentName, text, mood } = this.state;
+    const { childname, parentName, text, mood } = this.state.currentStudent;
     return (
       <div>
         {/* <h1>
@@ -114,14 +120,20 @@ class CreateForm extends Component {
             name="childname"
             value={childname}
             onChange={this.handleChange}
+            placeholder={this.state.currentStudent.childname}
           />
           <label>Parent Name</label>
           <input
             type="text"
             name="parentName"
             value={parentName}
+            placeholder={this.state.currentStudent.parentName}
             onChange={this.handleChange}
           />
+          <div>
+            <p>Current Mood: </p>
+            <button className="emoji" value={this.state.currentStudent.emoji} />
+          </div>
 
           <button
             onClick={this.setSmileMood}
@@ -129,8 +141,7 @@ class CreateForm extends Component {
             value=":smile:"
             className="emoji"
           >
-            <img // value=":smile:"
-            src="https://a.slack-edge.com/production-standard-emoji-assets/10.2/apple-medium/1f604@2x.png" />
+            <img src="https://a.slack-edge.com/production-standard-emoji-assets/10.2/apple-medium/1f604@2x.png" />{" "}
           </button>
           <button
             onClick={this.setGrinningMood}
@@ -139,8 +150,7 @@ class CreateForm extends Component {
             value=":grinning:"
             className="emoji"
           >
-            <img // value=":smile:"
-            src="https://a.slack-edge.com/production-standard-emoji-assets/10.2/apple-medium/1f60a@2x.png" />
+            <img src="https://a.slack-edge.com/production-standard-emoji-assets/10.2/apple-medium/1f60a@2x.png" />{" "}
           </button>
           <button
             onClick={this.setExpressionlessMood}
@@ -148,8 +158,7 @@ class CreateForm extends Component {
             value=":expressionless:"
             className="emoji"
           >
-            <img // value=":smile:"
-            src="https://a.slack-edge.com/production-standard-emoji-assets/10.2/apple-medium/1f610@2x.png" />
+            <img src="https://a.slack-edge.com/production-standard-emoji-assets/10.2/apple-medium/1f610@2x.png" />{" "}
           </button>
           <button
             onClick={this.setConfusedMood}
@@ -157,8 +166,7 @@ class CreateForm extends Component {
             value=":confused:"
             className="emoji"
           >
-            <img // value=":smile:"
-            src="https://a.slack-edge.com/production-standard-emoji-assets/10.2/apple-medium/1f61f@2x.png" />
+            <img src="https://a.slack-edge.com/production-standard-emoji-assets/10.2/apple-medium/1f61f@2x.png" />{" "}
           </button>
           <button
             onClick={this.setWorriedMood}
@@ -166,8 +174,7 @@ class CreateForm extends Component {
             nvalue=":worried:"
             className="emoji"
           >
-            <img // value=":smile:"
-            src="https://a.slack-edge.com/production-standard-emoji-assets/10.2/apple-medium/1f629@2x.png" />
+            <img src="https://a.slack-edge.com/production-standard-emoji-assets/10.2/apple-medium/1f629@2x.png" />{" "}
           </button>
           <label>Care to explain why?</label>
           <input
@@ -175,13 +182,16 @@ class CreateForm extends Component {
             name="text"
             value={text}
             onChange={this.handleChange}
+            placeholder={this.state.currentStudent.text}
           />
           <input
             type="button"
             value="submit"
-            onClick={event => {
-              this.handleSubmit(event);
-              this.setState(this.initialState);
+            onClick={() => {
+              this.props.updateStudentFunction(
+                this.props.target._id,
+                this.state.currentStudent
+              );
             }}
           />
         </form>
@@ -190,4 +200,4 @@ class CreateForm extends Component {
   }
 }
 
-export default CreateForm;
+export default Edit;
