@@ -22,45 +22,39 @@ class Register extends Component {
     this.props.signUpFalse();
   }
 
-  handleClick(event) {
+  async handleClick(event) {
     const apiBaseUrl = "http://localhost:3003/users/";
-    console.log(
-      "values",
-      this.state.fullName,
-      this.state.email,
-      this.state.password
-    );
-    const self = this;
+
     const payload = {
       fullName: this.state.fullName,
       email: this.state.email,
       password: this.state.password
     };
 
-    axios
-      .post(apiBaseUrl + "/register", payload)
-      .then(function(response) {
-        console.log(response);
-        if (response.data === "email address already exists") {
-          console.log("email address already exists");
-          alert("email address already exists");
-        } else {
-          console.log("registration successfull");
-          console.log("props: ", this.props);
-          this.props.toggleLogin();
-          const loginscreen = [];
-          // loginscreen.push(<Login parentContext = {this} />);
-          // const loginmessage = "Not Registered yet.Go to registration";
-          // self.props.parentContext.setState({loginscreen: loginscreen,
-          // loginmessage: loginmessage,
-          // buttonLabel: "Register",
-          // isLogin:true
-          //  });
-        }
-      })
-      .catch(function(error) {
-        console.log(error);
-      });
+    const response = await axios.post(apiBaseUrl + "/register", payload);
+    // axios
+    //   .post(apiBaseUrl + "/register", payload)
+    //   .then(function(response) {
+    if (response.data === "email address already exists") {
+      console.log("email address already exists");
+      alert("email address already exists");
+    } else {
+      console.log("registration successfull");
+
+      this.props.toggleLogin();
+      //       const loginscreen = [];
+      //       // loginscreen.push(<Login parentContext = {this} />);
+      //       // const loginmessage = "Not Registered yet.Go to registration";
+      //       // self.props.parentContext.setState({loginscreen: loginscreen,
+      //       // loginmessage: loginmessage,
+      //       // buttonLabel: "Register",
+      //       // isLogin:true
+      //       //  });
+    }
+    //   })
+    //   .catch(function(error) {
+    //     console.log(error);
+    //   });
   }
 
   render() {

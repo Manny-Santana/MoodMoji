@@ -27,9 +27,8 @@ class Login extends Component {
   }
 
   async handleClick() {
-    console.log("handleclick", this);
     const apiBaseUrl = "http://localhost:3003/users/";
-    console.log("handleclick", this);
+
     const payload = {
       email: this.state.email,
       password: this.state.password
