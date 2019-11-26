@@ -1,8 +1,12 @@
 import React from "react";
 import Table from "./components/Table";
 import "./App.css";
+import Login from "./components/Login";
+import Register from "./components/Register";
 import CreateForm from "./components/CreateForm";
 import axios from "axios";
+import {BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import AppBar from 'material-ui/AppBar';
 
 let baseURL = process.env.REACT_APP_BASEURL;
 
@@ -121,6 +125,38 @@ class App extends React.Component {
 
   render() {
     return (
+
+      <Router>
+        <div className="App">
+
+          <nav>
+              <Link to="/"> Login</Link>
+              <Link to="/register">Register</Link>
+          </nav>
+          <Route path="/" exact component={Login} />
+          <Route path="/register" component={Register} />
+          {/* <h1>How is your child feeling today?</h1>
+          <CreateForm addStudent={this.addStudent} /> */}
+          {/* <ul>
+            {this.state.students.map(item => {
+              return (
+                <li>
+                  emoji: {item.emoji}
+                  <button onClick={() => this.deleteMood(item._id)}>
+                    DELETE
+                  </button>
+                </li>
+              );
+            })}
+          </ul> */}
+          {/* <Table
+            studentData={this.state.students}
+            removeStudent={this.removeStudent}
+            setMood={this.state.setMood}
+          /> */}
+       
+       </div>
+      </Router>
       <div className="App">
         <h1>How is your child feeling today?</h1>
         <CreateForm getStudents={this.getStudents} />
