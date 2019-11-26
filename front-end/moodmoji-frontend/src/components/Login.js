@@ -9,7 +9,6 @@ class Login extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            // allUsers: [],
             email: "",
             password: ""
         }
@@ -54,8 +53,8 @@ class Login extends Component {
                 <AppBar title="Login" />
                 <TextField
                 hintText="Enter your Username"
-                floatingLabelText="Username"
-                onChange = {(event,newValue) => this.setState({username:newValue})}
+                floatingLabelText="Email"
+                onChange = {(event,newValue) => this.setState({email:newValue})}
                 />
                 <br/>
                 <TextField
