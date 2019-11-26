@@ -15,6 +15,7 @@ const app = express();
 const PORT = 3003;
 
 const MONGODB_URI = process.env.mongo_URI;
+// const MONGODB_URI =  "mongodb://localhost:27017" + "/studentDB"
 
 //CORS
 
