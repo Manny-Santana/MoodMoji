@@ -1,3 +1,4 @@
+ls
 import React, { Component } from "react";
 import Emoji from "react-emoji-render";
 import Edit from "./Edit";
