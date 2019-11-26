@@ -183,9 +183,7 @@ class App extends React.Component {
 
         <div className="App">
           <h1>How is your child feeling today?</h1>
-
           <CreateForm getStudents={this.getStudents} />
-
           {/* <ul>
           {this.state.students.map(item => {
             return (
