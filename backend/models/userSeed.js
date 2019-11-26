@@ -3,18 +3,22 @@ const usersModel = require("./users");
 
 const seedUsersInfo = [
     {
+        fullName: "Pam",
         email: "pam@gmail.com",
         password: "pam"
     },
-    {
+    {    
+      fullName: "Perrin",
         email: "perrin@gmail.com",
         password: "perrin"
     },
     {
+      fullName: "Manny",
         email: "manny@gmail.com",
         password: "manny"
     },
     {
+      fullName: "Pratz",
         email: "pratz@gmail.com",
         password: "pratz"
     }
@@ -26,7 +30,8 @@ const seedDB = () => {
     // =======================================
     //              DATABASE
     // =======================================
-    const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost/studentDB'
+    //const MONGODB_URI = "mongodb://localhost:27017" + "/studentDB";
+    const MONGODB_URI = process.env.mongo_URI || 'mongodb://localhost/DB_NAME' 
     
     mongoose.connect(MONGODB_URI, {
       useNewUrlParser: true
