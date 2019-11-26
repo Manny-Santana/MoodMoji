@@ -12,7 +12,7 @@ class MainContent extends Component {
         <Student />
       </div>
     );
-
+  }
 }
 
 export default MainContent;
