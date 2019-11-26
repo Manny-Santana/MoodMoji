@@ -8,7 +8,9 @@
   border: none;
   image-rendering: optimizeQuality;
 }
-
+.colorAuth {
+  background-color: #2669e6;
+}
 body {
   margin: 0px;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
@@ -495,7 +497,7 @@ h5 {
 }
 
 a {
-  color: #0366ee;
+  color: #05bcd4;
   text-decoration: none;
 }
 a:hover,
@@ -780,9 +782,9 @@ button,
 [type="button"] {
   -webkit-appearance: none;
   display: inline-block;
-  border: 1px solid #0366ee;
+  border: 1px solid#05BCD4;
   border-radius: 4px;
-  background: #0366ee;
+  background: #05bcd4;
   color: #ffffff;
   font-weight: 600;
   font-family: -apple-system, BlinkMacSystemFont, Helvetica Neue, Helvetica,
@@ -804,7 +806,7 @@ button:hover,
 [type="submit"]:hover,
 [type="reset"]:hover,
 [type="button"]:hover {
-  border: 1px solid #0250bc;
+  border: 1px solid #05bcd4;
   background: #0250bc;
   color: #ffffff;
   text-decoration: none;
@@ -822,8 +824,8 @@ button:active,
 [type="reset"]:active,
 [type="button"]:focus,
 [type="button"]:active {
-  border: 1px solid #0250bc;
-  background: #0250bc;
+  border: 1px solid #05bcd4;
+  background: #05bcd4;
   color: #ffffff;
   text-decoration: none;
 }
@@ -971,8 +973,8 @@ select:focus,
 select:active,
 textarea:focus,
 textarea:active {
-  border: 1px solid #0366ee;
-  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.1), 0 0 6px #8cbcfe;
+  border: 1px solid#05BCD4;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.1), 0 0 6px #05bcd4;
 }
 
 textarea {
@@ -1015,7 +1017,7 @@ label {
   display: block;
   margin: 1rem 0 0.5rem;
 }
-.edit{
+.edit {
   max-width: 100%;
   margin-top: 50px;
   border-radius: 12px;
@@ -1024,7 +1026,6 @@ label {
 .edit input {
   max-width: 50%;
   margin: 15px auto;
-
 }
 .edit label {
   margin: 10px;
@@ -1103,7 +1104,7 @@ caption {
 .contain-table {
   overflow-x: auto;
 }
-.edit{
+.edit {
   width: 100vw;
 }
 

@@ -50,22 +50,26 @@ class Login extends Component {
             <div>
              <MuiThemeProvider>
               <div>
-                <AppBar title="Login" />
+                <AppBar title="Login" showMenuIconButton={false} className="colorAuth" />
+                
                 <TextField
                 hintText="Enter your Username"
-                floatingLabelText="Email"
+                // floatingLabelText="Email"
                 onChange = {(event,newValue) => this.setState({email:newValue})}
                 />
                 <br/>
                 <TextField
                 type="password"
                 hintText="Enter your Password"
-                floatingLabelText="Password"
+                // floatingLabelText="Password"           
                 onChange = {(event,newValue) => this.setState({password:newValue})}
                 />
                 <br/>
-             <RaisedButton label="Submit" primary={true} style={style} onClick={(event) => this.handleClick(event)}/>
-            </div>
+                <RaisedButton label="Submit"  color="blue" primary={true} style={style} onClick={(event) => this.handleClick(event)}/> 
+                </div>
+                <div>
+                 {/* <p>Not Registered yet, go to registration!</p> */}
+                </div>
             </MuiThemeProvider>
             </div>
         )

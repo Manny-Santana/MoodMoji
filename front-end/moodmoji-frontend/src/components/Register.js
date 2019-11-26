@@ -54,31 +54,36 @@ class  Register extends Component {
         <MuiThemeProvider>
           <div>
           <AppBar
-             title="Register"
+             title="Register" showMenuIconButton={false}
            />
            <TextField
              hintText="Enter your Full Name"
-             floatingLabelText="Full Name"
+            //  floatingLabelText="Full Name"
              onChange = {(event,newValue) => this.setState({fullName:newValue})}
              />
            <br/>
            <TextField
              hintText="Enter your Email"
              type="email"
-             floatingLabelText="Email"
+            //  floatingLabelText="Email"
              onChange = {(event,newValue) => this.setState({email:newValue})}
              />
            <br/>
            <TextField
              type = "password"
              hintText="Enter your Password"
-             floatingLabelText="Password"
+            //  floatingLabelText="Password"
              onChange = {(event,newValue) => this.setState({password:newValue})}
              />
            <br/>
            <RaisedButton label="Submit" primary={true} style={style} onClick={(event) => this.handleClick(event)}/>
           </div>
+          <div>
+                 {/* <p>Already Registered, go to Login! </p>*/}
+                     
+             </div>
          </MuiThemeProvider>
+
         </div>
         )
     }
