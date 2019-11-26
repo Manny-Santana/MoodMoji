@@ -7,6 +7,7 @@ import CreateForm from "./components/CreateForm";
 import axios from "axios";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import AppBar from "material-ui/AppBar";
+import LoginContainer from "./components/LoginContainer";
 
 let baseURL = process.env.REACT_APP_BASEURL;
 
@@ -19,48 +20,8 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      students: [
-        //   {
-        //     _id: 1,
-        //     childname: "Ted",
-        //     text: "sleepy",
-        //     emoji: ":worried:",
-        //     parentName: "Susan",
-        //     teacherId: "Elaine"
-        //   },
-        //   {
-        //     _id: 2,
-        //     childname: "Bobby",
-        //     text: "Did not eat breakfast",
-        //     emoji: ":confused:",
-        //     parentName: "John",
-        //     teacherId: "Elaine"
-        //   },
-        //   {
-        //     _id: 3,
-        //     childname: "Albert",
-        //     text: "ready for school",
-        //     emoji: ":expressionless:",
-        //     parentName: "June",
-        //     teacherId: "Elaine"
-        //   },
-        //   {
-        //     _id: 4,
-        //     childname: "John",
-        //     text: "happy",
-        //     emoji: ":grinning:",
-        //     parentName: "Sandy",
-        //     teacherId: "Elaine"
-        //   },
-        //   {
-        //     _id: 5,
-        //     childname: "Joan",
-        //     text: "looking forward to the halloween party",
-        //     emoji: ":smile:",
-        //     parentName: "Henry",
-        //     teacherId: "Elaine"
-        //   }
-      ],
+      loggedin: false,
+      students: [],
       student: {},
       edit: false,
       updatedStudent: {}
@@ -73,6 +34,7 @@ class App extends React.Component {
     this.toggleEditOn = this.toggleEditOn.bind(this);
     this.toggleEditOff = this.toggleEditOff.bind(this);
     this.passData = this.passData.bind(this);
+    this.toggleLogin = this.toggleLogin.bind(this);
   }
 
   //Function tied CreateForm to add a new Mood
@@ -95,15 +57,6 @@ class App extends React.Component {
       students: [...response.data]
     });
   }
-
-  // setMood = event => {
-  //   const { student, id } = event.target;
-  //   console.log(id);
-
-  //   this.setState({
-  //     [student]: id
-  //   });
-  // };
 
   async removeStudent(id) {
     await axios.delete(`${baseURL}/students/${id}`);
@@ -139,75 +92,34 @@ class App extends React.Component {
       updatedStudent: obj
     });
   }
-
-  // removeStudent = index => {
-  //   const { students } = this.state;
-
-  //   this.setState({
-  //     students: students.filter((student, i) => {
-  //       return i !== index;
-  //     })
-  //   });
-  // };
+  toggleLogin() {
+    this.setState((prevState, props) => {
+      return { loggedin: !prevState.loggedin };
+    });
+  }
 
   render() {
     return (
-      <Router>
-        <div className="App">
-          <nav>
-            <Link to="/"> Login</Link>
-            <Link to="/register">Register</Link>
-          </nav>
-          <Route path="/" exact component={Login} />
-          <Route path="/register" component={Register} />
-          {/* <h1>How is your child feeling today?</h1>
-          <CreateForm addStudent={this.addStudent} /> */}
-          {/* <ul>
-            {this.state.students.map(item => {
-              return (
-                <li>
-                  emoji: {item.emoji}
-                  <button onClick={() => this.deleteMood(item._id)}>
-                    DELETE
-                  </button>
-                </li>
-              );
-            })}
-          </ul> */}
-          {/* <Table
-            studentData={this.state.students}
-            removeStudent={this.removeStudent}
-            setMood={this.state.setMood}
-          /> */}
-        </div>
+      <div className="App">
+        {this.state.loggedin
+          ? <div>
+              <h1>How is your child feeling today?</h1>
+              <button onClick={this.toggleLogin}>Logout</button>
+              <CreateForm getStudents={this.getStudents} />
 
-        <div className="App">
-          <h1>How is your child feeling today?</h1>
-          <CreateForm getStudents={this.getStudents} />
-          {/* <ul>
-          {this.state.students.map(item => {
-            return (
-              <li>
-                emoji: {item.emoji}
-                <button onClick={() => this.deleteMood(item._id)}>
-                  DELETE
-                </button>
-              </li>
-            );
-          })}
-        </ul> */}
-          <Table
-            studentData={this.state.students}
-            removeStudent={this.removeStudent}
-            updateStudent={this.updateStudent}
-            toggleEditOn={this.toggleEditOn}
-            toggleEditOff={this.toggleEditOff}
-            updatedStudent={this.state.updatedStudent}
-            passData={this.passData}
-            edit={this.state.edit}
-          />
-        </div>
-      </Router>
+              <Table
+                studentData={this.state.students}
+                removeStudent={this.removeStudent}
+                updateStudent={this.updateStudent}
+                toggleEditOn={this.toggleEditOn}
+                toggleEditOff={this.toggleEditOff}
+                updatedStudent={this.state.updatedStudent}
+                passData={this.passData}
+                edit={this.state.edit}
+              />
+            </div>
+          : <LoginContainer toggleLogin={this.toggleLogin} />}
+      </div>
     );
   }
 }
