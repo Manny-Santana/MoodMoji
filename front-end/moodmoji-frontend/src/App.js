@@ -5,8 +5,8 @@ import Login from "./components/Login";
 import Register from "./components/Register";
 import CreateForm from "./components/CreateForm";
 import axios from "axios";
-import {BrowserRouter as Router, Route, Link } from 'react-router-dom';
-import AppBar from 'material-ui/AppBar';
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import AppBar from "material-ui/AppBar";
 
 let baseURL = process.env.REACT_APP_BASEURL;
 
@@ -152,13 +152,11 @@ class App extends React.Component {
 
   render() {
     return (
-
       <Router>
         <div className="App">
-
           <nav>
-              <Link to="/"> Login</Link>
-              <Link to="/register">Register</Link>
+            <Link to="/"> Login</Link>
+            <Link to="/register">Register</Link>
           </nav>
           <Route path="/" exact component={Login} />
           <Route path="/register" component={Register} />
@@ -181,15 +179,14 @@ class App extends React.Component {
             removeStudent={this.removeStudent}
             setMood={this.state.setMood}
           /> */}
-       
-       </div>
-      </Router>
-      <div className="App">
-        <h1>How is your child feeling today?</h1>
+        </div>
 
-        <CreateForm getStudents={this.getStudents} />
+        <div className="App">
+          <h1>How is your child feeling today?</h1>
 
-        {/* <ul>
+          <CreateForm getStudents={this.getStudents} />
+
+          {/* <ul>
           {this.state.students.map(item => {
             return (
               <li>
@@ -201,17 +198,18 @@ class App extends React.Component {
             );
           })}
         </ul> */}
-        <Table
-          studentData={this.state.students}
-          removeStudent={this.removeStudent}
-          updateStudent={this.updateStudent}
-          toggleEditOn={this.toggleEditOn}
-          toggleEditOff={this.toggleEditOff}
-          updatedStudent={this.state.updatedStudent}
-          passData={this.passData}
-          edit={this.state.edit}
-        />
-      </div>
+          <Table
+            studentData={this.state.students}
+            removeStudent={this.removeStudent}
+            updateStudent={this.updateStudent}
+            toggleEditOn={this.toggleEditOn}
+            toggleEditOff={this.toggleEditOff}
+            updatedStudent={this.state.updatedStudent}
+            passData={this.passData}
+            edit={this.state.edit}
+          />
+        </div>
+      </Router>
     );
   }
 }
